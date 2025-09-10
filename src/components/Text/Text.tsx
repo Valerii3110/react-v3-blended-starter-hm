@@ -1,25 +1,29 @@
-import style from "./Text.module.css";
+// src/components/Text/Text.tsx
+import type { ReactNode } from 'react';
+import styles from './Text.module.css';
 
 interface TextProps {
-  children: React.ReactNode;
-  textAlign?: string;
-  marginBottom?: string;
+  children: ReactNode;
+  textAlign?: 'left' | 'center' | 'right' | 'justify';
+  color?: 'primary' | 'secondary' | 'error' | 'success';
+  size?: 'small' | 'medium' | 'large';
+  className?: string;
 }
 
-export default function Text({
+export const Text = ({
   children,
-  textAlign = "",
-  marginBottom = "0",
-}: TextProps) {
-  return (
-    <p
-      className={[
-        style["text"],
-        style[textAlign],
-        style[`marginBottom${marginBottom}`],
-      ].join(" ")}
-    >
-      {children}
-    </p>
-  );
-}
+  textAlign = 'left',
+  color = 'primary',
+  size = 'medium',
+  className = '',
+}: TextProps) => {
+  const textClasses = `
+    ${styles.text}
+    ${styles[`align-${textAlign}`]}
+    ${styles[`color-${color}`]}
+    ${styles[`size-${size}`]}
+    ${className}
+  `.trim();
+
+  return <p className={textClasses}>{children}</p>;
+};
