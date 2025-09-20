@@ -6,7 +6,7 @@ interface GridProps {
 }
 
 export const Grid = ({ children }: GridProps) => {
-  return <ul className={styles.grid}>{children}</ul>;
+  return <ul className={styles.list}>{children}</ul>;
 };
 
 interface GridItemProps {
